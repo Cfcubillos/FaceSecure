@@ -3,3 +3,6 @@ import pika  # Cliente para interactuar con RabbitMQ.
 import base64  # Para codificar imágenes a base64.
 import json  # Para convertir mensajes a formato JSON.
 import time  # Para obtener timestamp.
+
+def capture_and_send():
+    pass  # Definimos la función principal vacía por ahora.
