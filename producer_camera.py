@@ -5,4 +5,7 @@ import json  # Para convertir mensajes a formato JSON.
 import time  # Para obtener timestamp.
 
 def capture_and_send():
-    pass  # Definimos la función principal vacía por ahora.
+    # Configura la conexión a RabbitMQ
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    channel = connection.channel()
+    channel.queue_declare(queue='image_queue')  # Asegura que la cola 'image_queue' exista.
