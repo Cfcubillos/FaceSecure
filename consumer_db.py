@@ -52,3 +52,9 @@ def callback(ch, method, properties, body):
     except json.JSONDecodeError as e:
         print(f"Error al decodificar JSON: {e}")
 
+def consume_messages():
+    try:
+        connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+        channel = connection.channel()
+
+        channel.queue_declare(queue='image_queue')  # Asegura que la cola exista
