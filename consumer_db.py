@@ -35,3 +35,20 @@
             if connection.is_connected():
                 cursor.close()
                 connection.close()
+                
+
+def callback(ch, method, properties, body):
+    try:
+        # Decodifica el mensaje JSON
+        message = json.loads(body)
+        print(f"Recibida imagen con timestamp: {message['timestamp']}")
+
+        # Llama a la función para guardar en BD
+        save_to_database(
+            message['image'],
+            message['timestamp'],
+            message.get('metadata', {})
+        )
+    except json.JSONDecodeError as e:
+        print(f"Error al decodificar JSON: {e}")
+
